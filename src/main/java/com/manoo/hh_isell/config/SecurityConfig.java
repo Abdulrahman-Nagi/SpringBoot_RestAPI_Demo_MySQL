@@ -18,6 +18,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.servlet.http.HttpServletResponse;
+
 
 @Configuration
 @EnableWebSecurity
@@ -39,12 +41,23 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
 
         http.httpBasic().and()
+
                 .authorizeRequests().antMatchers(SECURED_ENDPOINTS).authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .csrf().disable();
+                .csrf().disable()
+
+                .exceptionHandling()
+                .authenticationEntryPoint((request, response, e) -> {
+                    String json = String.format("{\"message\": \"%s\"}", e.getMessage());
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    response.getWriter().write(json);
+                });
+
 
 
 
