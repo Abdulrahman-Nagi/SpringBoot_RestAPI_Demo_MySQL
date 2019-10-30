@@ -30,6 +30,12 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     @Autowired
     UserService userDetailsService;
 
+    @Autowired
+    RestAccessDeniedHandler accessDeniedHandler;
+
+    @Autowired
+    RestAuthenticationEntryPoint authenticationEntryPoint;
+
 
     private final String[] SECURED_ENDPOINTS={
             "/v1/**"
@@ -47,16 +53,10 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .csrf().disable()
+                .csrf().disable().cors().disable()
 
                 .exceptionHandling()
-                .authenticationEntryPoint((request, response, e) -> {
-                    String json = String.format("{\"message\": \"%s\"}", e.getMessage());
-                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    response.setContentType("application/json");
-                    response.setCharacterEncoding("UTF-8");
-                    response.getWriter().write(json);
-                });
+                .accessDeniedHandler(accessDeniedHandler).authenticationEntryPoint(authenticationEntryPoint);
 
 
 

@@ -6,6 +6,8 @@ import java.util.Date;
 
 public class ErrorMessage {
 
+
+    private int status;
     private String message;
     private String uri;
 
@@ -22,6 +24,14 @@ public class ErrorMessage {
         this();
         this.message=message;
         this.uri=uri;
+    }
+
+
+    public ErrorMessage(int status,String message) {
+        this();
+        this.message=message;
+        this.status=status;
+
     }
 
     public String getUri() {
@@ -46,5 +56,25 @@ public class ErrorMessage {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+
+    }
+
+    @Override
+    public String toString() {
+        return "ErrorMessage{" +
+                "status=" + status +
+                ", message='" + message + '\'' +
+                ", uri='" + uri + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
     }
 }
