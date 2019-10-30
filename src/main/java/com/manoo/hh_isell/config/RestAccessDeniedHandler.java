@@ -21,7 +21,7 @@ public class RestAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
 
 
-        ErrorMessage response = new ErrorMessage(403, "Access Denied");
+        ErrorMessage response = new ErrorMessage(403, "You don't have permission to Access this source");
 
         OutputStream out = httpServletResponse.getOutputStream();
         ObjectMapper mapper = new ObjectMapper();
