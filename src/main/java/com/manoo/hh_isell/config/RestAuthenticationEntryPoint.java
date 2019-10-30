@@ -21,8 +21,8 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
 
 
-        ErrorMessage response = new ErrorMessage(401, "Unauthorised");
-        response.setMessage("Bad Credential !");
+        ErrorMessage response = new ErrorMessage(401, "Bad Credential !");
+
         OutputStream out = httpServletResponse.getOutputStream();
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(out, response);

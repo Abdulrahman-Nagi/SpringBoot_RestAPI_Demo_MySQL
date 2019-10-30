@@ -22,7 +22,7 @@ public class RestAccessDeniedHandler implements AccessDeniedHandler {
 
 
         ErrorMessage response = new ErrorMessage(403, "Access Denied");
-        response.setMessage("Access Denied");
+
         OutputStream out = httpServletResponse.getOutputStream();
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(out, response);
