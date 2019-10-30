@@ -70,7 +70,7 @@ return new ResponseEntity<Clients>( HttpStatus.CREATED);
 
 
 
-    @PostMapping(value = "/secured/client")
+    @PostMapping(value = "/add")
     public ResponseEntity<Clients> saveClient(@Valid @RequestBody Clients client) {
 
       Clients clients=  clientService.saveClient(client);

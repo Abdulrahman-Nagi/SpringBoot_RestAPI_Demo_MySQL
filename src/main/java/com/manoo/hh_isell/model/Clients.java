@@ -3,10 +3,12 @@ package com.manoo.hh_isell.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
 import java.util.Date;
@@ -16,6 +18,7 @@ import java.util.Date;
 public class Clients {
 
     @Id
+    @Range(min = 6,message = "Client code shouldn't be less than 6 digits")
    private long client_code;
 
     @NotEmpty

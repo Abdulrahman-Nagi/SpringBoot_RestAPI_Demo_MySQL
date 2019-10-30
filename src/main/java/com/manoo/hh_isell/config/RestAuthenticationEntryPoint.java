@@ -22,11 +22,12 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 
         ErrorMessage response = new ErrorMessage(401, "Unauthorised");
-        response.setMessage("Unauthorised");
+        response.setMessage("Bad Credential !");
         OutputStream out = httpServletResponse.getOutputStream();
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(out, response);
         out.flush();
+
 
 
     }
