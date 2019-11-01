@@ -13,7 +13,7 @@ public class Van {
 
     private String vanModel;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "SalesRep_Code")
     private SalesRep salesRep;
 

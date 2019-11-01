@@ -22,10 +22,18 @@ public class ClientService {
      return    clientRepo.save(client);
     }
 
+
+
+
     public List<Clients> getAllClients() {
 
         return (List<Clients>) clientRepo.findAll();
     }
+
+
+
+
+
 
     public Clients findByID(long id) {
 

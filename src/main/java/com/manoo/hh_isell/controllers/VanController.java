@@ -51,23 +51,29 @@ public class VanController {
 
         SalesRep sR = salesRepService.findByID(srid);
 
-        Van van=null;
+        Van van = vanService.getVanByID(vanid);
 
-        try {
-             van = vanService.getVanByID(vanid).map(
-                    van1 -> {
-                        van1.setSalesRep(sR);
+        van.setSalesRep(sR);
 
-                        vanService.saveVan(van1);
+      Van saved =  vanService.updateVan(van);
 
-                        return van1;
-                    }
-            ).orElseThrow(()-> new NotFoundException("Van not found"));
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
+        return new ResponseEntity<Van>(saved,HttpStatus.OK);
+    }
 
-        return new ResponseEntity<Van>(van,HttpStatus.OK);
+
+
+
+    @PutMapping("{vanid}/unassign")
+    public ResponseEntity<Van> unassingSalesRep (@PathVariable long vanid) {
+
+        Van van =vanService.getVanByID(vanid);
+
+        van.setSalesRep(null);
+
+        Van saved =vanService.updateVan(van);
+
+        return new ResponseEntity<Van>(saved,HttpStatus.OK);
+
     }
 
 
