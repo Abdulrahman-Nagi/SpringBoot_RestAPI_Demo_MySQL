@@ -8,7 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+
 
 
 import java.util.Date;
@@ -46,6 +46,13 @@ public class Clients {
     }
 
 
+
+    public Clients(@Range(min = 6, message = "Client code shouldn't be less than 6 digits") long client_code, @NotEmpty String client_name, @NotEmpty String client_location) {
+        this.client_code = client_code;
+        this.client_name = client_name;
+        this.client_location = client_location;
+        this.created_at = new Date();
+    }
 
     public long getClient_code() {
         return client_code;

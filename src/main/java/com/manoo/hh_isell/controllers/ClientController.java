@@ -39,6 +39,19 @@ public class ClientController {
 
 
 
+
+    @GetMapping ("/{clientid}")
+    public ResponseEntity<Clients> getClient(@PathVariable(value = "clientid") long id) {
+
+        Clients client = clientService.findByID(id);
+
+        return new ResponseEntity<Clients>(client,HttpStatus.OK) ;
+    }
+
+
+
+
+
     @PostMapping("/{salesrepid}")
     public ResponseEntity<Clients> addClient(@PathVariable(value = "salesrepid") long id, @RequestBody Clients client) {
 
@@ -79,5 +92,16 @@ return new ResponseEntity<Clients>( HttpStatus.CREATED);
     }
 
 
+    @DeleteMapping(value = "/{clientid}")
+    public ResponseEntity<Clients> deleteClient(@PathVariable (value = "clientid") long id ) {
+
+        Clients client = clientService.findByID(id);
+
+        clientService.deleteClient(client);
+
+        return new ResponseEntity<Clients>(client,HttpStatus.NO_CONTENT);
+
+
+    }
 
 }

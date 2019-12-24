@@ -47,4 +47,22 @@ public class ClientService {
             throw  new NotFoundException(String.format("Client with Code [%s] Not found",id));
         }
     }
+
+
+    public void deleteClient(Clients client) {
+
+        if(clientRepo.findById(client.getClient_code()).isPresent()) {
+
+            clientRepo.delete(client);
+
+        }
+
+        else  {
+
+            throw  new NotFoundException(String.format("Client with Code [%s] Not found",client.getClient_code()));
+
+        }
+
+
+    }
 }
