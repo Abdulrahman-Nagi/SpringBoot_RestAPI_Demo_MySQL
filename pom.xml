@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.manoo.isell</groupId>
-	<artifactId>hh_isell</artifactId>
+	<artifactId>jenkins-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hh_isell</name>
 	<description>Demo project for HandHeld system</description>
@@ -72,6 +72,24 @@
 
 
 	</dependencies>
+
+	<repositories>
+
+		<repository>
+			<id>myMavenRepo.read</id>
+
+			<name>https://mymavenrepo.com/repo/iX51CfGbjQDVurFzhk4o/</name>
+
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>myMavenRepo.write</id>
+			<name>https://mymavenrepo.com/repo/QL6xtAIQ0FEh6pwmjQ27/</name>
+		</repository>
+
+	</distributionManagement>
 
 	<build>
 
