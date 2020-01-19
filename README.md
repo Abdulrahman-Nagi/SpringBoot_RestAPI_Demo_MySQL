@@ -1,19 +1,3 @@
-
-# snippet
-
-
-```java
-
-if(isExist) {
-
-doSomeThing();
-
-}
-
-```
-
 ## Description
 
-hellooooo
-
-##### Header
+This is Demo Application for Sales Force Automation System.
